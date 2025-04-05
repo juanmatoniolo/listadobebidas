@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #A8D5BA;
+    color: #2E7D32;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.carrito {
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    background: white;
+    color: #2E7D32;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    -webkit-border-radius:10px ;
+    -moz-border-radius:10px ;
+    -ms-border-radius: 10px;
+    -o-border-radius:10px ;
+}
+
+.menu {
+    width: 90%;
+    margin: auto;
+    background: white;
+    color: #2E7D32;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 50px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #66BB6A;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    background: #E8F5E9;
+}
+
+.card img {
+    width: 30%;
+    border-radius: 10px;
+}
+
+.card-info {
+    width: 70%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.precio {
+    color: #1B5E20;
+    font-weight: bold;
+}
+
+button {
+    background: #66BB6A;
+    color: white;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.eliminar {
+    background: red;
+    color: white;
+    border: none;
+    padding: 3px 5px;
+    cursor: pointer;
+    font-size: 12px;
+    float: right;
+    width: 1.8em;
+}
+
+.vaciar {
+    background: #ff5722;
+    margin-top: 5px;
+}
+
+.carrito ul {
+    list-style: none;
+    padding: 0;
+}
+
+.carrito li {
+    display: flex;
+    gap: 3em;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    padding: 3px 0;
+    width: 70%;
+    margin: auto;
+}
+
+/* Estilos para la notificación */
+.notificacion {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+    font-size: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeOut 2s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}

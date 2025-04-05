@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Carta de Bebidas - Club Ferro</title>
+</head>
+
+<body>
+
+    <!-- Notificación de producto agregado -->
+    <div id="notificacion" class="notificacion"></div>
+
+    <div class="carrito">
+        <h2>Carrito</h2>
+        <ul id="listaCarrito"></ul>
+        <p>Total: $<span id="total">0</span></p>
+        <button onclick="enviarWhatsApp()">Enviar Pedido</button>
+        <button class="vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
+    </div>
+
+    <h1>Carta de Bebidas</h1>
+    <div class="menu" id="menu"></div>
+
+    <script>
+        let productos = [
+            { nombre: "Fernet", precio: 6000, imagen: "./img/fernet.webp" },
+            { nombre: "Gancia", precio: 5000, imagen: "./img/gancia.webp" },
+            { nombre: "Vino", precio: 4000, imagen: "./img/vino.webp" },
+            { nombre: "Cerveza", precio: 2500, imagen: "./img/CERVEZA.webp" },
+            { nombre: "Agua Sierra de los Padres 500ml", precio: 1000, imagen: "./img/agua.webp" },
+            { nombre: "Coca 500ml", precio: 1500, imagen: "./img/gaseosa.webp" },
+            { nombre: "Agua Saborizada Brio 1.5L", precio: 1800, imagen: "./img/brio.webp" }
+        ];
+
+        let carrito = [];
+        let total = 0;
+
+        function agregarAlCarrito(nombre, precio) {
+            carrito.unshift({ nombre, precio }); // Agrega el producto al inicio del carrito
+            total += precio;
+            actualizarCarrito();
+            mostrarNotificacion(`${nombre} agregado al carrito`);
+        }
+
+        function eliminarDelCarrito(index) {
+            total -= carrito[index].precio;
+            carrito.splice(index, 1);
+            actualizarCarrito();
+        }
+
+        function vaciarCarrito() {
+            carrito = [];
+            total = 0;
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            let lista = document.getElementById("listaCarrito");
+            let totalElemento = document.getElementById("total");
+            lista.innerHTML = "";
+            carrito.forEach((item, index) => {
+                let li = document.createElement("li");
+                li.innerHTML = `${item.nombre} - $${item.precio} <button class='eliminar' onclick='eliminarDelCarrito(${index})'>X</button>`;
+                lista.appendChild(li);
+            });
+            totalElemento.textContent = total;
+        }
+
+        function enviarWhatsApp() {
+            let mensaje = "Pedido:\n";
+            carrito.forEach(item => {
+                mensaje += `- ${item.nombre} ($${item.precio})\n`;
+            });
+            mensaje += `Total a pagar: $${total}`;
+            let url = `https://wa.me/5493412275598?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, "_blank");
+        }
+
+        function cargarProductos() {
+            let menu = document.getElementById("menu");
+            productos.forEach(prod => {
+                let card = document.createElement("div");
+                card.classList.add("card");
+                card.innerHTML = `
+                    <img src="${prod.imagen}" alt="${prod.nombre}">
+                    <div class="card-info">
+                        <h3>${prod.nombre}</h3>
+                        <p class="precio">$${prod.precio}</p>
+                        <button onclick="agregarAlCarrito('${prod.nombre}', ${prod.precio})">Agregar</button>
+                    </div>
+                `;
+                menu.appendChild(card);
+            });
+        }
+
+        function mostrarNotificacion(mensaje) {
+            let notificacion = document.getElementById("notificacion");
+            notificacion.textContent = mensaje;
+            notificacion.style.display = "block";
+
+            setTimeout(() => {
+                notificacion.style.display = "none";
+            }, 2000);
+        }
+
+        window.onload = cargarProductos;
+    </script>
+</body>
+
+</html>
