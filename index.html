@@ -26,13 +26,14 @@
 
     <script>
         let productos = [
-            { nombre: "Fernet", precio: 6000, imagen: "./img/fernet.webp" },
-            { nombre: "Gancia", precio: 5000, imagen: "./img/gancia.webp" },
-            { nombre: "Vino", precio: 4000, imagen: "./img/vino.webp" },
+            { nombre: "Fernet", precio: 7000, imagen: "./img/fernet.webp" },
+            { nombre: "Gancia", precio: 7000, imagen: "./img/gancia.webp" },
+            { nombre: "Vino", precio: "consulatr", imagen: "./img/vino.webp" },
             { nombre: "Cerveza", precio: 2500, imagen: "./img/CERVEZA.webp" },
-            { nombre: "Agua Sierra de los Padres 500ml", precio: 1000, imagen: "./img/agua.webp" },
-            { nombre: "Coca 500ml", precio: 1500, imagen: "./img/gaseosa.webp" },
-            { nombre: "Agua Saborizada Brio 1.5L", precio: 1800, imagen: "./img/brio.webp" }
+            { nombre: "Agua Sierra de los Padres 500ml", precio: 1500, imagen: "./img/agua.webp" },
+            { nombre: "Coca 500ml", precio: 2500, imagen: "./img/gaseosa.webp" },
+            { nombre: "Agua Saborizada Brio 1.5L", precio: 3000, imagen: "./img/brio.webp" },
+            { nombre: "Vaso de hielo", precio: 2000, imagen: "./img/hielo.webp" }
         ];
 
         let carrito = [];
@@ -74,7 +75,7 @@
             carrito.forEach(item => {
                 mensaje += `- ${item.nombre} ($${item.precio})\n`;
             });
-            mensaje += `Total a pagar: $${total}`;
+            mensaje += `Total a pagar: $${total} \n ALIAS PARA TRANSFERENCIAS: comparsa.fenix2026`;
             let url = `https://wa.me/5493412275598?text=${encodeURIComponent(mensaje)}`;
             window.open(url, "_blank");
         }
@@ -103,7 +104,7 @@
 
             setTimeout(() => {
                 notificacion.style.display = "none";
-            }, 2000);
+            }, 300);
         }
 
         window.onload = cargarProductos;
